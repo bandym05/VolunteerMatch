@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Volunteer Matching Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Sign Up for VolunteerMatch</h1>
+    </header>
+
+    <div class="container">
+        <h2>Create an Account</h2>
+        <form action="signup.php" method="POST">
+            <!-- Name Field -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <!-- Email Field -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- Password Field -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <!-- Role Field -->
+            <label for="role">I am a:</label>
+            <select id="role" name="role" required>
+                <option value="volunteer">Volunteer</option>
+                <option value="company">Company</option>
+            </select>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Sign Up">
+
+            <!-- Already have an account? -->
+            <p>Already have an account? <a href="login.html">Login here</a>.</p>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 VolunteerMatch. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

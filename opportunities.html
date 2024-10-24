@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Opportunities</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Browse Volunteer Opportunities</h1>
+    </header>
+
+    <section>
+        <div id="opportunities-list"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 VolunteerMatch. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch volunteer opportunities in XML format
+        fetch('backend/fetch_opportunities.php')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, "application/xml");
+                const opportunities = xmlDoc.getElementsByTagName("opportunity");
+                let output = "<ul>";
+
+                for (let i = 0; i < opportunities.length; i++) {
+                    output += "<li>" +
+                        "Position: " + opportunities[i].getElementsByTagName("position")[0].textContent +
+                        " | Date: " + opportunities[i].getElementsByTagName("date")[0].textContent +
+                        " | Location: " + opportunities[i].getElementsByTagName("location")[0].textContent +
+                        " | Description: " + opportunities[i].getElementsByTagName("description")[0].textContent +
+                        "</li>";
+                }
+                output += "</ul>";
+                document.getElementById("opportunities-list").innerHTML = output;
+            });
+    </script>
+</body>
+</html>
