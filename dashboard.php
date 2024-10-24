@@ -30,8 +30,8 @@ if (isset($_GET['error'])) {
     <title>Dashboard - Volunteer Matching Platform</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Include Google Maps API (replace YOUR_API_KEY with your actual API key) -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv34rZDv5AtaTRQKr8UuxczgQQYOMjwyQ"></script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
 
     <script>
         function fetchOpportunities() {
