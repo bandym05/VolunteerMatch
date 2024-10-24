@@ -1,0 +1,211 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Updated font to a modern one */
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Gradient background header */
+header {
+    background: linear-gradient(45deg, #6a11cb, #2575fc, #ff6f61);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+/* Navigation styles */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+nav a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+/* Main container styles */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    background: linear-gradient(45deg, #6a11cb, #ff6f61);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Forms styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="date"],
+form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+form input[type="submit"] {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background: linear-gradient(45deg, #2575fc, #ff6f61);
+}
+
+/* Card styles */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center cards */
+}
+
+.card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 15px; /* Spacing between cards */
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 30px); /* Two cards per row */
+    transition: background-color 0.3s ease;
+}
+
+.card:hover {
+    background-color: #e0e0e0;
+}
+
+/* Card button styles */
+.card-btn {
+    background-color: #6a11cb; /* Purple color */
+    color: white;
+    padding: 8px 12px; /* Smaller button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.card-btn:hover {
+    background-color: #2575fc; /* Primary color on hover */
+}
+
+/* Form Card Styles */
+.form-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative; /* Change to relative */
+    width: 100%;
+    border-radius: 10px;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid #575757;
+    }
+
+    nav a:last-child {
+        border-bottom: none;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        width: calc(100% - 30px); /* Full width on small screens */
+    }
+}
+
+
+
