@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'company') {
 $company_id = $_SESSION['user_id'];
 
 try {
-    $stmt = $pdo->prepare("SELECT applications.*, users.name, users.email, volunteer_postings.position, volunteer_postings.date 
+    $stmt = $pdo->prepare("SELECT applications.*, users.id, users.name, users.email, volunteer_postings.position, volunteer_postings.date 
                             FROM applications 
                             JOIN users ON applications.volunteer_id = users.id 
                             JOIN volunteer_postings ON applications.id = volunteer_postings.id 
@@ -29,6 +29,7 @@ try {
     
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo '<application>';
+        echo '<id>' . htmlspecialchars($row['id']) . '</id>';
         echo '<volunteer>' . htmlspecialchars($row['name']) . '</volunteer>';
         echo '<email>' . htmlspecialchars($row['email']) . '</email>';
         echo '<position>' . htmlspecialchars($row['position']) . '</position>';

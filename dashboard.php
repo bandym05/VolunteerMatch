@@ -30,8 +30,8 @@ if (isset($_GET['error'])) {
     <title>Dashboard - Volunteer Matching Platform</title>
     <link rel="stylesheet" href="css/style.css">
 
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
+    <!-- Include Google Maps API (replace YOUR_API_KEY with your actual API key) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv34rZDv5AtaTRQKr8UuxczgQQYOMjwyQ"></script>
 
     <script>
         function fetchOpportunities() {
@@ -74,7 +74,8 @@ if (isset($_GET['error'])) {
                     const applications = xmlDoc.getElementsByTagName('application');
                     let output = '';
                     for (let i = 0; i < applications.length; i++) {
-                        output += '<div class="card">' +
+
+                        output += '<div class="card" onclick="showProfile(' + applications[i].getElementsByTagName('id')[0].textContent + ')">' +
                             '<h4>' + applications[i].getElementsByTagName('volunteer')[0].textContent + '</h4>' +
                             '<p><strong>Email:</strong> ' + applications[i].getElementsByTagName('email')[0].textContent + '</p>' +
                             '<p><strong>Applied for:</strong> ' + applications[i].getElementsByTagName('position')[0].textContent + '</p>' +
@@ -88,6 +89,8 @@ if (isset($_GET['error'])) {
             };
             xhr.send();
         }
+
+
 
         function showMap(location) {
         const modal = document.getElementById('mapModal');
@@ -136,6 +139,35 @@ if (isset($_GET['error'])) {
             fetchOpportunities();
             fetchApplications();
         };
+
+
+    
+
+
+
+
+
+
+        // Show volunteer profile in a modal
+        function showProfile(volunteerId) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'fetch_volunteer_profile.php?id=' + volunteerId, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('profile-content').innerHTML = xhr.responseText;
+                    document.getElementById('profileModal').style.display = 'block';
+                } else {
+                    console.error('Error fetching profile: ' + xhr.status);
+                }
+            };
+            xhr.send();
+        }
+
+        // Close the profile modal
+        function closeProfileModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+
     </script>
 </head>
 <body>
@@ -145,6 +177,9 @@ if (isset($_GET['error'])) {
     <nav>
         <a href="dashboard.php">Dashboard</a>
         <a href="logout.php">Logout</a>
+        <?php if ($role === 'volunteer'): ?>
+        <a href="profile.php">Profile</a>
+        <?php endif; ?>  
     </nav>
 </header>
 
@@ -191,6 +226,66 @@ if (isset($_GET['error'])) {
         <div id="map" style="width: 100%; height: 400px;"></div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+<!-- Profile Modal (hidden by default) -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProfileModal()">&times;</span>
+        <div id="profile-content">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+    </div>
+</div>
+
+<style>
+/* Additional styles for the Profile Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    margin: 10% auto;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+}
+</style>
+
+
+
+
+
+
 
 <footer>
     <p>&copy; 2024 VolunteerMatch. All rights reserved.</p>
