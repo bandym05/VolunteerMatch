@@ -1,7 +1,11 @@
 # Volunteer Matching System (VMS)
 
 
-https://github.com/user-attachments/assets/171814a0-bb81-4f01-acd6-2fcb468ead7f
+
+
+https://github.com/user-attachments/assets/fb58b2c7-c724-4564-b84f-0787404e783f
+
+
 
 
 ## Introduction
@@ -25,9 +29,7 @@ Built using a client-server architecture, VMS utilizes structured data transfer 
 1. **Registration**: Individuals and organizations create accounts on the platform.
 2. **Profile Creation**: Users can build detailed profiles with information on interests, skills, and availability.
 3. **Opportunity Posting**: Organizations post volunteer opportunities with specifics like role type, time commitment, and skills required.
-4. **Matching Algorithm**: The platform matches volunteers with relevant opportunities based on profile data, location, and availability.
-5. **Communication**: VMS facilitates communication between volunteers and organizations to coordinate details.
-6. **Feedback System**: After volunteering, both parties can provide feedback to improve future matches and maintain quality experiences.
+4. **Opportunity recomendation**: Using your profile data, location, and availability, the platform ranks and displays volunteer opportunities, prioritizing those that best match your interests and capabilities.
 
 ## Benefits
 
