@@ -98,6 +98,108 @@ Built using a client-server architecture, VMS utilizes structured data transfer 
 
 ---
 
+### **Core Files and Scripts**
+
+1. **`auth_middleware.php`**
+   - **Purpose**: This middleware checks whether a user is authenticated (logged in) before allowing access to protected pages.
+   - **Connection**: Included in pages where authentication is required, such as `post_opportunity.php`, `fetch_applications.php`, `delete_opportunity.php`, and `edit_opportunity.php`. If the user is not authenticated, they are redirected to the login page (`login.html`).
+
+2. **`db.php`**
+   - **Purpose**: Establishes a database connection using PDO.
+   - **Connection**: Included in nearly all scripts that require database access to perform actions such as fetching, updating, or deleting records.
+
+---
+
+### **Page and Script Documentation**
+
+#### **1. User Authentication**
+   - **Pages**: `login.html`, `auth_middleware.php`
+   - **Purpose**: To ensure users are authenticated before accessing the platform.
+   - **Functionality**:
+      - `login.html`: Provides a form for users to enter their credentials.
+      - `auth_middleware.php`: Checks for a valid session on protected pages. If a session does not exist, it redirects the user to `login.html`.
+
+#### **2. Dashboard (e.g., `dashboard.php`)**
+   - **Purpose**: Serves as the central hub for users after they log in, displaying relevant information based on the user’s role (`volunteer` or `company`).
+   - **Connection**:
+      - Uses scripts such as `fetch_applications.php` and `fetch_volunteer_profile.php` to dynamically load data based on the user's role.
+      - Links to other actions (e.g., posting or applying to opportunities, viewing profiles).
+
+#### **3. Opportunity Posting and Management**
+
+   - **Script**: `post_opportunity.php`
+      - **Purpose**: Allows companies to post new volunteer opportunities.
+      - **Functionality**:
+         - Authenticated companies enter details like position, date, location, and description, which are saved in the `volunteer_postings` table.
+         - Connection: Uses `auth_middleware.php` for access control and `db.php` to save opportunity details.
+
+   - **Script**: `edit_opportunity.php`
+      - **Purpose**: Allows companies to edit details of previously posted opportunities.
+      - **Functionality**:
+         - Retrieves current details of the opportunity and provides an editable form for the company.
+         - Upon submission, updates the `volunteer_postings` table with the new details.
+      - **Connection**: Uses `auth_middleware.php` for authentication, `db.php` for database connection, and links back to the dashboard.
+
+   - **Script**: `delete_opportunity.php`
+      - **Purpose**: Deletes an opportunity posted by the company.
+      - **Functionality**:
+         - Requires the `opportunity_id` from a POST request.
+         - Deletes the specified opportunity from the `volunteer_postings` table.
+      - **Connection**: Authenticated via `auth_middleware.php`, uses `db.php` for database access, and redirects to `dashboard.php`.
+
+---
+
+#### **4. Volunteer Application Management**
+
+   - **Script**: `apply_opportunity.php`
+      - **Purpose**: Allows volunteers to apply for a specific opportunity.
+      - **Functionality**:
+         - Adds a new entry in the `applications` table linking the volunteer to the chosen opportunity.
+         - Verifies that the volunteer is authenticated and has a valid session.
+      - **Connection**: Linked from opportunity listings on the volunteer's dashboard.
+
+   - **Script**: `fetch_applications.php`
+      - **Purpose**: Fetches all applications submitted for a company’s posted opportunities.
+      - **Functionality**:
+         - Retrieves applications, including volunteer name, email, and the applied position, and returns this data as XML.
+      - **Connection**: 
+         - Called on the company’s dashboard to display applications.
+         - Uses `auth_middleware.php` for access control and `db.php` for fetching data.
+         - Works with `fetch_volunteer_profile.php` to view more details on individual volunteers.
+
+---
+
+#### **5. Volunteer Profile**
+
+   - **Script**: `fetch_volunteer_profile.php`
+      - **Purpose**: Fetches and displays a volunteer’s profile, including skills, location, interests, and availability.
+      - **Functionality**:
+         - Retrieves volunteer data based on the `id` parameter, ensuring that only authenticated users can access this information.
+      - **Connection**:
+         - Accessed via a link in `fetch_applications.php` so companies can view applicant profiles.
+         - Uses `db.php` to fetch volunteer data from the `users` table.
+
+---
+
+### **How Scripts Work Together**
+
+1. **User Flow for Volunteers**:
+   - Volunteers log in via `login.html`.
+   - After logging in, they’re directed to `dashboard.php`, where they can see open opportunities.
+   - They can apply for an opportunity using `apply_opportunity.php`, which adds an application entry in the database.
+   - When companies review applications via `fetch_applications.php`, they can view volunteer profiles by linking to `fetch_volunteer_profile.php`.
+
+2. **User Flow for Companies**:
+   - Companies also log in via `login.html`.
+   - After login, `dashboard.php` presents options for posting new opportunities (`post_opportunity.php`), editing or deleting them (`edit_opportunity.php` and `delete_opportunity.php`).
+   - Companies can review volunteer applications for their postings through `fetch_applications.php`, with links to view each volunteer’s profile (`fetch_volunteer_profile.php`).
+
+3. **Data Flow and Interactions**:
+   - **Session Management**: `auth_middleware.php` checks each session for a valid `user_id`. This middleware is critical for ensuring that sensitive actions like posting or viewing applications are restricted to authorized users.
+   - **XML Data Exchange**: `fetch_applications.php` provides XML-formatted data to dynamically display applications on the company dashboard. JavaScript can parse this XML and populate HTML elements on the page. This method allows for smooth, client-side updating without full-page reloads.
+   - **Dynamic Volunteer Profile Access**: When companies view applications, they can access volunteer profiles through `fetch_volunteer_profile.php`. This script retrieves profile data in HTML format, allowing companies to see more detailed information about each volunteer, such as skills and availability.
+   - **Error Handling and Redirection**: Most scripts include error handling, redirecting the user back to the dashboard with success or error messages appended as query parameters (e.g., `dashboard.php?success=applied`). This allows users to understand the outcome of their actions and proceed accordingly.
+
 ## Database Schema
 
 ### Tables and Columns
