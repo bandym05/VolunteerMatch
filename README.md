@@ -230,7 +230,7 @@ Built using a client-server architecture, VMS utilizes structured data transfer 
    - `position`: Title of the volunteer position.
    - `date`: Scheduled date for the volunteer opportunity.
    - `location`: Location of the opportunity.
-   - `description`: Details about the volunteer role.
+   - `description`: Details about the role of the volunteer.
    - `created_at`: Timestamp of posting creation.
 
 3. **`applications`**
