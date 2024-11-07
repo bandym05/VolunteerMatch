@@ -191,7 +191,7 @@ Built using a client-server architecture, VMS utilizes structured data transfer 
 
 2. **User Flow for Companies**:
    - Companies also log in via `login.html`.
-   - After login, `dashboard.php` presents options for posting new opportunities (`post_opportunity.php`), editing or deleting them (`edit_opportunity.php` and `delete_opportunity.php`).
+   - After login, `dashboard.php` presents options for posting new opportunities (`post_opportunity.php`).
    - Companies can review volunteer applications for their postings through `fetch_applications.php`, with links to view each volunteer’s profile (`fetch_volunteer_profile.php`).
 
 3. **Data Flow and Interactions**:
