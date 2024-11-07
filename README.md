@@ -100,12 +100,24 @@ Built using a client-server architecture, VMS utilizes structured data transfer 
 ### Tables and Columns
 
 1. **`users`**  
+   Stores information about all registered users on the platform, including their profile details, contact preferences, and role-specific data.
+
    - `id`: Primary key, unique identifier for each user.
    - `name`: User's full name.
    - `email`: Unique email address.
    - `password`: User's hashed password.
-   - `role`: User role, either `volunteer` or `company`.
-   - `created_at`: Timestamp of account creation.
+   - `role`: User's role, either `volunteer` or `company`.
+   - `created_at`: Timestamp of when the user account was created.
+   - `location`: User's current location or city.
+   - `skills`: List of the user's skills, stored as comma-separated values or a JSON array.
+   - `interests`: List of the user's interests, stored as comma-separated values or a JSON array.
+   - `availability`: User's availability for volunteer opportunities. Options include `weekdays`, `weekends`, `evenings`, or `anytime`.
+   - `preferred_locations`: List of locations preferred by the user for volunteering, stored as a comma-separated string.
+   - `receive_email_updates`: Boolean indicating if the user wants to receive email updates. Defaults to `TRUE`.
+   - `receive_sms_updates`: Boolean indicating if the user wants to receive SMS updates. Defaults to `FALSE`.
+   - `subscribe_newsletter`: Boolean indicating if the user is subscribed to the newsletter. Defaults to `TRUE`.
+   - `profile_picture_url`: URL to the user's profile picture.
+   - `updated_at`: Timestamp that records the last time the user's profile was updated. Updates automatically whenever profile information changes. 
 
 2. **`volunteer_postings`**
    - `id`: Primary key, unique identifier for each posting.
