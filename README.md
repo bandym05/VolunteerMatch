@@ -39,7 +39,7 @@ Built using a client-server architecture, VMS utilizes structured data transfer 
 - **Customized Matches**: Tailored matches based on preferences and skills.
 - **Enhanced Volunteer Satisfaction**: Volunteers find roles suited to their interests.
 - **Increased Organizational Impact**: Efficient recruitment and retention of volunteers improve an organization’s impact.
-- **Data-Driven Insights**: Valuable data on volunteer activities allows for informed decision-making.
+
 
 ---
 
