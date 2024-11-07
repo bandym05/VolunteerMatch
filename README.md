@@ -30,6 +30,9 @@ Built using a client-server architecture, VMS utilizes structured data transfer 
 2. **Profile Creation**: Users can build detailed profiles with information on interests, skills, and availability.
 3. **Opportunity Posting**: Organizations post volunteer opportunities with specifics like role type, time commitment, and skills required.
 4. **Opportunity recomendation**: Using your profile data, location, and availability, the platform ranks and displays volunteer opportunities, prioritizing those that best match your interests and capabilities.
+5. **Opportunity Application**:
+6. **Map View**:
+
 
 ## Benefits
 
