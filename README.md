@@ -15,7 +15,7 @@ The **Volunteer Matching System (VMS)** is a web-based application designed to f
 
 ### Problem Statement
 
-The traditional process of volunteer matching is often manual and time-consuming, leading to inefficiencies and missed opportunities.
+The traditional process of volunteer matching is often manual and time-consuming, leading to inefficiencies and missed opportunities. 
 
 ### Solution
 
